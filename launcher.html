@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LebiuStudio Launcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Decoración de fondo */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.03) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Botón Volver */
+        .btn-volver {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+        
+        .btn-volver:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Contenedor principal */
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 1000px;
+            padding: 50px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Elementos decorativos */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* Cabecera */
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #000, #fff, #000);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-top: 25px;
+            color: #bbb;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        /* Plataformas */
+        .platforms {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .platform {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            width: 250px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .platform::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #fff;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .platform:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .platform:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+        
+        .platform:hover .logo {
+            transform: scale(1.1);
+        }
+        
+        .platform h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 1px;
+        }
+        
+        .windows .btn {
+            background: linear-gradient(to right, #222, #555);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .mac .btn {
+            background: linear-gradient(to right, #222, #555);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .linux .btn {
+            background: linear-gradient(to right, #222, #555);
+            color: white;
+            cursor: not-allowed;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .windows .btn:hover {
+            background: linear-gradient(to right, #333, #666);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .mac .btn:hover {
+            background: linear-gradient(to right, #333, #666);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .platform-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        
+        .platform-info i {
+            margin-right: 5px;
+            color: #ddd;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Efecto de brillo en hover */
+        .glow-on-hover {
+            position: relative;
+            z-index: 0;
+        }
+        
+        .glow-on-hover::before {
+            content: '';
+            background: linear-gradient(45deg, #fff, #aaa, #fff, #aaa, #fff);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 50px;
+        }
+        
+        .glow-on-hover:hover::before {
+            opacity: 0.3;
+        }
+        
+        /* Animación para los botones de Windows y Mac */
+        @keyframes subtlePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .windows .btn, .mac .btn {
+            animation: subtlePulse 3s infinite ease-in-out;
+        }
+        
+        .windows .btn:hover, .mac .btn:hover {
+            animation: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .platforms {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .platform {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .btn-volver {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+    
+    <button class="btn-volver" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> Volver
+    </button>
+    
+    <div class="container">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        
+        <div class="header">
+            <h1>LebiuStudio</h1>
+            <p class="subtitle">Descarga nuestro launcher para acceder a todas las funciones y eventos exclusivos de Minecraft</p>
+        </div>
+        
+        <div class="platforms">
+            <div class="platform windows">
+                <div class="logo">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <h2>Windows</h2>
+                <a href="https://www.mediafire.com/file/5i1c6z4kxquykeh/LebiuStudio-Launcher-win-x64.exe/file" class="btn glow-on-hover">Descargar</a>
+                <div class="platform-info">
+                    <p><i class="fas fa-check-circle"></i> Windows 10/11</p>
+                    <p><i class="fas fa-microchip"></i> Arquitectura 64-bit</p>
+                    <p><i class="fas fa-download"></i> Tamaño: 85 MB</p>
+                </div>
+            </div>
+            
+            <div class="platform mac">
+                <div class="logo">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <h2>macOS</h2>
+                <a href="https://www.mediafire.com/file/c167gt859wacfhd/Lebiu-Launcher-mac-universal.dmg/file" class="btn glow-on-hover">Descargar</a>
+                <div class="platform-info">
+                    <p><i class="fas fa-check-circle"></i> Versión Universal</p>
+                    <p><i class="fas fa-microchip"></i> Apple Silicon</p>
+                    <p><i class="fas fa-download"></i> Tamaño: 92 MB</p>
+                </div>
+            </div>
+            
+            <div class="platform linux">
+                <div class="logo">
+                    <i class="fab fa-linux"></i>
+                </div>
+                <h2>Linux</h2>
+                <button class="btn">Próximamente</button>
+                <div class="platform-info">
+                    <p><i class="fas fa-cog"></i> Versión en desarrollo</p>
+                    <p><i class="fas fa-calendar-alt"></i> Disponible: dentro de poco</p>
+                    <p><i class="fas fa-laptop-code"></i> Ubuntu, Fedora</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            LebiuStudio © 2025 | Eventos Minecraft de Calidad
+        </div>
+    </div>
+    
+    <script>
+        // Efecto de confeti para los botones de descarga
+        document.querySelectorAll('.windows .btn, .mac .btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Animación de confirmación
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Descargando...';
+                this.style.background = 'linear-gradient(to right, #333, #666)';
+                
+                // Redirigir después de un breve retraso
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 1500);
+            });
+        });
+        
+        // Animación para el botón de Linux
+        document.querySelector('.linux .btn').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-hourglass-half"></i> En desarrollo';
+            setTimeout(() => {
+                this.innerHTML = 'Próximamente';
+            }, 2000);
+        });
+        
+        // Efecto de aparición gradual para los elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.header, .platform');
+            elements.forEach((el, i) => {
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 100);
+                }, 200 * i);
+            });
+        });
+    </script>
+</body>
+</html>

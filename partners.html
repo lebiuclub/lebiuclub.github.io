@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Partners oficiales de nuestra organización">
+  <title>Partners Oficiales | Colaboraciones estratégicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #1a1a1a;
+      --secondary-color: #2a2a2a;
+      --accent-color: #4a90e2;
+      --text-color: #f0f0f0;
+      --text-secondary: #b0b0b0;
+      --transition-speed: 0.4s;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: var(--primary-color);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--secondary-color), #111);
+      width: 100%;
+      padding: 1.5em 0;
+      text-align: center;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), transparent);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2em 1em;
+      gap: 3em;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    .partner-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 1.5em;
+    }
+
+    .partner-card {
+      background: var(--secondary-color);
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .partner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .img-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      overflow: hidden;
+    }
+
+    .img-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+      transition: transform 0.5s ease;
+    }
+
+    .partner-card:hover .img-container img {
+      transform: scale(1.03);
+    }
+
+    .partner-info {
+      padding: 1.5em;
+      text-align: center;
+    }
+
+    .partner-info h2 {
+      color: var(--accent-color);
+      margin-bottom: 0.5em;
+      font-weight: 600;
+    }
+
+    .partner-info p {
+      color: var(--text-secondary);
+      font-size: 0.95em;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      background: var(--secondary-color);
+      padding: 2em 1em;
+      font-size: 0.9em;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 4em;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer p {
+      margin-bottom: 0.5em;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content {
+        padding: 1.5em 1em;
+        gap: 2em;
+      }
+      
+      .partner-info {
+        padding: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fade-in">
+    <h1>Partners Oficiales</h1>
+  </header>
+
+  <div class="content">
+    <section class="partner-section">
+      <article class="partner-card fade-in delay-1">
+        <div class="img-container">
+          <img src="parners/IMG_0900.webp" alt="Imagen del partner" loading="lazy">
+        </div>
+        <div class="partner-info">
+          <h2>Partner Principal</h2>
+          <p>Colaboración estratégica para el crecimiento mutuo</p>
+        </div>
+      </article>
+
+      <article class="partner-card fade-in delay-2">
+        <div class="img-container">
+          <img src="parners/logo sponsor.webp" alt="Logo del sponsor" loading="lazy">
+        </div>
+        <div class="partner-info">
+          <h2>Sponsor Oficial</h2>
+          <p>Apoyando nuestras iniciativas desde el principio</p>
+        </div>
+      </article>
+    </section>
+
+    <div class="fade-in delay-3">
+      <video controls autoplay muted loop playsinline>
+        <source src="parners/ZEPHY_ALFIN_SPONSOR_OFICIAL.mov" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+  </div>
+
+  <footer class="fade-in delay-3">
+    <p>Página hecha por: Tomas</p>
+    <p>&copy; 2023 Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mejorar la experiencia de carga
+      if ('IntersectionObserver' in window) {
+        const lazyLoad = (target) => {
+          const io = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                  img.src = img.dataset.src;
+                }
+                observer.disconnect();
+              }
+            });
+          });
+          io.observe(target);
+        };
+        
+        document.querySelectorAll('img[loading="lazy"]').forEach(lazyLoad);
+      }
+
+      // Smooth scroll para anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

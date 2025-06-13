@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebiu Studio - Quiénes Somos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Decoración minimalista */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255,255,255,0.03) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        /* Botón Volver */
+        .btn-volver {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .btn-volver:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-volver i {
+            font-size: 1.1rem;
+        }
+        
+        /* Contenedor principal */
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 800px;
+            padding: 60px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Elementos decorativos */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* Contenido de texto */
+        .title {
+            font-size: 4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            position: relative;
+            color: transparent;
+            -webkit-text-stroke: 1.5px #fff;
+            text-stroke: 1.5px #fff;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: #ddd;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        
+        .text-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-box p {
+            font-size: 1.1rem;
+            color: #eee;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            text-align: justify;
+        }
+        
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .text-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #fff, #aaa);
+        }
+        
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            color: #ccc;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Animación de escritura */
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 4s steps(40, end);
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            
+            .text-box {
+                padding: 25px 20px 25px 30px;
+            }
+            
+            .text-box p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .btn-volver {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    
+    <!-- Fuente Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+    
+    <button class="btn-volver" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> Volver
+    </button>
+    
+    <div class="container">
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        
+        <h1 class="title">¿Quiénes Somos?</h1>
+        
+        <p class="subtitle">Conoce la esencia de Lebiu Studio y nuestra pasión por crear experiencias únicas en Minecraft</p>
+        
+        <div class="text-box">
+            <p>Bienvenidos a Lebiu Studio, el lugar donde los eventos de Minecraft cobran vida. Nos especializamos en la organización y producción de experiencias únicas dentro del juego, creando torneos, desafíos y eventos personalizados para la comunidad.</p>
+            
+            <p>En Lebiu Studio, combinamos creatividad y profesionalismo para ofrecer eventos innovadores, asegurando diversión y emoción para todos los jugadores. Si buscas una experiencia inolvidable en Minecraft, ¡estás en el lugar correcto!</p>
+            
+            <p>Nuestro equipo está formado por apasionados del gaming y expertos en organización de eventos virtuales. Nos dedicamos a transformar simples partidas en aventuras épicas, donde cada jugador se convierte en protagonista de su propia historia.</p>
+        </div>
+        
+        <div class="signature">El equipo de Lebiu Studio</div>
+        
+        <div class="footer">
+            Lebiu Studio © 2025 | Minecraft Event Specialists
+        </div>
+    </div>
+    
+    <script>
+        // Efecto de escritura para el título
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('.title');
+            const originalText = title.textContent;
+            title.innerHTML = '';
+            
+            const letters = originalText.split('');
+            letters.forEach((letter, i) => {
+                const span = document.createElement('span');
+                span.textContent = letter;
+                span.style.opacity = '0';
+                span.style.display = 'inline-block';
+                title.appendChild(span);
+                
+                setTimeout(() => {
+                    span.style.transition = 'opacity 0.3s ease';
+                    span.style.opacity = '1';
+                }, 100 * i);
+            });
+        });
+    </script>
+</body>
+</html>
