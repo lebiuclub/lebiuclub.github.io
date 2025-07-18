@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipo del Studio Minecraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #e0e0e0; /* Gris suave */
+      color: #000;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      color: #000;
+      font-size: 3em;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      animation: glowTitle 2s ease-in-out infinite alternate;
+    }
+
+    .team-section {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #d8d8d8; /* Caja principal en gris */
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      animation: slideUp 1.5s ease;
+    }
+
+    .role {
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    .role:hover {
+      transform: scale(1.02);
+    }
+
+    .role h2 {
+      color: #111;
+      font-size: 1.4em;
+      margin-bottom: 8px;
+      border-left: 4px solid #111;
+      padding-left: 10px;
+    }
+
+    .members {
+      margin-left: 20px;
+      font-size: 1.1em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .members span {
+      background: #cfcfcf; /* Gris claro para cada nombre */
+      padding: 6px 12px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .members span:hover {
+      background: #000;
+      color: #fff;
+      box-shadow: 0 0 10px #000;
+      transform: scale(1.05);
+    }
+
+    /* Tomas con efecto especial */
+    .members span.special {
+      background: #eecde5; /* Gris-rosa suave */
+      color: #000;
+      box-shadow: 0 0 10px #ff69b4;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .members span.special:hover {
+      background: #8000ff; /* Morado */
+      color: #fff;
+      box-shadow: 0 0 15px #8000ff, 0 0 25px #8000ff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes glowTitle {
+      from { text-shadow: 0 0 10px #aaa; }
+      to { text-shadow: 0 0 20px #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Staff del Studio Minecraft</h1>
+
+  <div class="team-section">
+
+    <div class="role"><h2>Funder</h2><div class="members"><span>LeoMaxGalar</span></div></div>
+    <div class="role"><h2>Co-Funder</h2><div class="members"><span>㊅ SrGato ㊅</span></div></div>
+    <div class="role"><h2>CEO</h2><div class="members"><span>٭𝙳𝙰𝚁𝙺𝙴𝙽٭</span></div></div>
+    <div class="role"><h2>Tilin</h2><div class="members"><span>Sarek1</span></div></div>
+    <div class="role"><h2>Dtowncat</h2><div class="members"><span>𝐒𝐨𝐲𝐦𝐢𝐬𝐬𝐚_𝐕𝐫</span></div></div>
+    <div class="role"><h2>Jefe de Diseño Gráfico</h2><div class="members"><span>Khaos</span></div></div>
+    <div class="role"><h2>Jefe Actor de Voz</h2><div class="members"><span>Sirkass</span></div></div>
+
+    <div class="role">
+      <h2>Modeladores 3D</h2>
+      <div class="members">
+        <span>MenakiVT</span>
+        <span>Mr tugy 💚</span>
+        <span class="special">tomas</span>
+        <span>Webosky</span>
+        <span>box</span>
+        <span>ᴅᴇᴍᴜᴜ</span>
+        <span>ᴢᴠ ꜰʀᴀɴɴɴ</span>
+      </div>
+    </div>
+
+    <div class="role"><h2>Builder</h2><div class="members"><span>Aldhair 🜲</span><span>leandro</span></div></div>
+    <div class="role"><h2>Render 3D</h2><div class="members"><span>M3x3</span></div></div>
+    <div class="role"><h2>Configurador CE</h2><div class="members"><span>4k5m</span><span>sebasOwO</span></div></div>
+    <div class="role"><h2>Pixel Art</h2><div class="members"><span>Kayzee</span></div></div>
+
+  </div>
+
+</body>
+</html>
